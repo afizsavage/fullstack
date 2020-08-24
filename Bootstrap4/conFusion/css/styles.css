@@ -37,6 +37,14 @@ body {
   border-bottom: 1px solid #ddd;
   padding: 10px; }
 
+.modal-content {
+  background-color: #d1c4e9; }
+  .modal-content .modal-header {
+    background-color: #512da8;
+    color: floralwhite; }
+    .modal-content .modal-header .button {
+      color: floralwhite; }
+
 .carousel {
   background: #512da8; }
   .carousel .carousel-item {
@@ -52,6 +60,3 @@ body {
   position: absolute;
   bottom: 0px;
   z-index: 1; }
-
-#login {
-  cursor: pointer; }
