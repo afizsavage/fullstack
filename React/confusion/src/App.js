@@ -9,8 +9,14 @@ class App extends Component {
     super(props);
     this.state = {
       dishes: DISHES,
+      selectedDish: null,
     };
   }
+
+  onDishSelect(dish) {
+    this.setState({ selectedDish: dish });
+  }
+
   render() {
     return (
       <div className="App">
@@ -24,17 +30,5 @@ class App extends Component {
     );
   }
 }
-/*function App() {
-  return (
-    <div className="App">
-      <Navbar dark color="primary">
-        <div className="container">
-          <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
-        </div>
-      </Navbar>
-      <Menu />
-    </div>
-  );
-}*/
 
 export default App;
