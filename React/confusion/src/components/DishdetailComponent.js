@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
+import moment from "moment";
 
 class DishDetail extends Component {
   renderDish(dish) {
@@ -17,19 +18,30 @@ class DishDetail extends Component {
   }
 
   renderComments(commnts) {
-    commnts = this.props.comments.map((comnt) => {
-      return (
-        <div>
-          <ul className="list-unstyled">
-            <li key={comnt.id}>{comnt.comment}</li>
-            <li>
-              {comnt.author}, {Date.parse(comnt.date)}
-            </li>
-          </ul>
-        </div>
-      );
-    });
-    return <div className="col-12 col-md-5 m-1">{commnts}</div>;
+    if (commnts != null)
+      return commnts.map((comnt) => {
+        return (
+          <div>
+            <ul className="list-unstyled">
+              <li className="mb-2" key={comnt.id}>
+                {comnt.comment}
+              </li>
+              <li>
+                --{comnt.author}, {moment(comnt.date).format("MM-DD-YYYY")}
+              </li>
+            </ul>
+          </div>
+        );
+      });
+    else return <div></div>;
+  }
+
+  renderHeading(props) {
+    if (props.length <= 0) {
+      return [];
+    } else {
+      return <h1 className="mb-2">Comments</h1>;
+    }
   }
 
   render() {
@@ -38,7 +50,10 @@ class DishDetail extends Component {
         <div className="col-12 col-md-5 m-1">
           {this.renderDish(this.props.selectedDish)}
         </div>
-        {this.renderComments()}
+        <div className="col-12 col-md-5 m-1">
+          {this.renderHeading(this.props.comments)}
+          {this.renderComments(this.props.comments)}
+        </div>
       </div>
     );
   }
