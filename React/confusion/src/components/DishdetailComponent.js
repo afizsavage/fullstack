@@ -19,7 +19,7 @@ function RenderComments({ comments }) {
   if (comments != null)
     return comments.map((comnt) => {
       return (
-        <div>
+        <div key={comnt.id}>
           <ul className="list-unstyled">
             <li className="mb-2" key={comnt.id}>
               {comnt.comment}
