@@ -9,7 +9,7 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
-function RenderMenuItem({ onClick, renCom, dish }) {
+function RenderMenuItem({ dish }) {
   return (
     <Card key={dish.id}>
       <Link to={`/menu/${dish.id}`}>
