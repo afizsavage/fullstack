@@ -10,14 +10,14 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
-function RenderDish({ dish }) {
-  if (dish != null)
+function RenderDish({ dishs }) {
+  if (dishs != null)
     return (
-      <Card key={dish.id}>
-        <CardImg top src={dish.image} alt={dish.name} />
+      <Card key={dishs.id}>
+        <CardImg top src={dishs.image} alt={dishs.name} />
         <CardBody>
-          <CardTitle>{dish.name}</CardTitle>
-          <CardText>{dish.description}</CardText>
+          <CardTitle>{dishs.name}</CardTitle>
+          <CardText>{dishs.description}</CardText>
         </CardBody>
       </Card>
     );
@@ -73,7 +73,7 @@ const DishDetail = (props) => {
       </div>
       <div className="row">
         <div className="col-12 col-md-5 m-1">
-          <RenderDish dish={props.dish} />
+          <RenderDish dishs={props.dish} />
         </div>
         <div className="col-12 col-md-5 m-1">
           <RenderHeading comments={props.comments} />
