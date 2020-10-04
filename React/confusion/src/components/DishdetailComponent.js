@@ -71,7 +71,7 @@ class CommentForm extends Component {
 
   handleSubmit(values) {
     this.toggleModal();
-    this.props.addComment(
+    this.props.postComment(
       this.props.dishId,
       values.rating,
       values.author,
@@ -83,7 +83,7 @@ class CommentForm extends Component {
     return (
       <div>
         <Button outline onClick={this.toggleModal}>
-          <i class="fa fa-pencil" aria-hidden="true"></i> Submit Comment
+          <i className="fa fa-pencil" aria-hidden="true"></i> Submit Comment
         </Button>
         <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
           <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
@@ -151,7 +151,7 @@ class CommentForm extends Component {
   }
 }
 
-function RenderComments({ comments, dishId, addComment }) {
+function RenderComments({ comments, postComment, dishId }) {
   if (comments != null) {
     return (
       <div className="col-12 col-md-5 m-1">
@@ -175,7 +175,7 @@ function RenderComments({ comments, dishId, addComment }) {
             );
           })}
         </ul>
-        <CommentForm dishId={dishId} addComment={addComment} />
+        <CommentForm dishId={dishId} postComment={postComment} />
       </div>
     );
   } else {
@@ -222,7 +222,7 @@ const DishDetail = (props) => {
 
           <RenderComments
             comments={props.comments}
-            addComment={props.addComment}
+            postComment={props.postComment}
             dishId={props.dish.id}
           />
         </div>
