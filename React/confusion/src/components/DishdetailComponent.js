@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Control, LocalForm, Errors } from "react-redux-form";
 import { Link } from "react-router-dom";
+import { baseUrl } from "../shared/baseUrl";
 import {
   Card,
   CardImg,
@@ -38,7 +39,7 @@ function RenderDish(props) {
   } else if (props.dishs != null)
     return (
       <Card key={props.dishs.id}>
-        <CardImg top src={props.dishs.image} alt={props.dishs.name} />
+        <CardImg top src={baseUrl + props.dishs.image} alt={props.dishs.name} />
         <CardBody>
           <CardTitle>{props.dishs.name}</CardTitle>
           <CardText>{props.dishs.description}</CardText>
