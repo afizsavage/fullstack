@@ -7,25 +7,35 @@ import {
   CardHeader,
   Media,
 } from "reactstrap";
+import { Fade, Stagger } from "react-animation-components";
+import { baseUrl } from "../shared/baseUrl";
+import { Loading } from "./LoadingComponent";
 import { Link } from "react-router-dom";
 
-const RenderLeader = ({ leads }) => {
-  return leads.map((leader) => {
-    return (
-      <Media key={leader.id}>
-        <img
-          className="d-flex mt-2 mr-5 img-thumbnail align-self-start"
-          src={leader.image}
-          alt={leader.name}
-        />
-        <div className="media-body mt-1">
-          <h2 className="mt-0">{leader.name}</h2>
-          <h4>{leader.designation}</h4>
-          <p className="d-none d-sm-block">{leader.description}</p>
-        </div>
-      </Media>
-    );
-  });
+const RenderLeader = ({ leads, isLoading, errMess }) => {
+  if (isLoading) {
+    return <Loading />;
+  } else if (errMess) {
+    return <h4>{errMess}</h4>;
+  } else
+    return leads.leaders.map((leader) => {
+      return (
+        <Fade in>
+          <Media key={leader.id}>
+            <img
+              className="d-flex mt-2 mr-5 img-thumbnail align-self-start"
+              src={baseUrl + leader.image}
+              alt={leader.name}
+            />
+            <div className="media-body mt-1">
+              <h2 className="mt-0">{leader.name}</h2>
+              <h4>{leader.designation}</h4>
+              <p className="d-none d-sm-block">{leader.description}</p>
+            </div>
+          </Media>
+        </Fade>
+      );
+    });
 };
 
 function About(props) {
@@ -106,7 +116,13 @@ function About(props) {
         </div>
         <div className="col-12">
           <Media list>
-            <RenderLeader leads={props.leaders} />
+            <Stagger in>
+              <RenderLeader
+                leads={props.leaders}
+                isLoading={props.leaders.isLoading}
+                errMess={props.leaders.errMess}
+              />
+            </Stagger>
           </Media>
         </div>
       </div>
