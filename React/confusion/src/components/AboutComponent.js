@@ -13,12 +13,13 @@ import { Loading } from "./LoadingComponent";
 import { Link } from "react-router-dom";
 
 const RenderLeader = ({ leads, isLoading, errMess }) => {
+  let leeds;
   if (isLoading) {
     return <Loading />;
   } else if (errMess) {
     return <h4>{errMess}</h4>;
   } else
-    return leads.leaders.map((leader) => {
+    leeds = leads.leaders.map((leader) => {
       return (
         <Fade in>
           <Media key={leader.id}>
@@ -36,6 +37,11 @@ const RenderLeader = ({ leads, isLoading, errMess }) => {
         </Fade>
       );
     });
+  return (
+    <Media list>
+      <Stagger in>{leeds}</Stagger>
+    </Media>
+  );
 };
 
 function About(props) {
@@ -115,15 +121,11 @@ function About(props) {
           <h2>Corporate Leadership</h2>
         </div>
         <div className="col-12">
-          <Media list>
-            <Stagger in>
-              <RenderLeader
-                leads={props.leaders}
-                isLoading={props.leaders.isLoading}
-                errMess={props.leaders.errMess}
-              />
-            </Stagger>
-          </Media>
+          <RenderLeader
+            leads={props.leaders}
+            isLoading={props.leaders.isLoading}
+            errMess={props.leaders.errMess}
+          />
         </div>
       </div>
     </div>
